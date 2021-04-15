@@ -29,23 +29,29 @@ def clear():
 while playerone < 3 and aiwin < 3:
     if lastcatch != 0:
         print(lastcatch)
-    given = input("Please choose your Hand. 1:Rock 2:Paper 3:Scissors: ")
-    given = int(given) -1
-
-    aihand = hand[random.randint(0,2)]
-    result = catch(hand[given],aihand)
-    if  result == "win":
-        lastcatch = "CPU plays {}".format(aihand)+", you play {}.".format(hand[given])+f" {Fore.YELLOW}You win!{Style.RESET_ALL}"
-        print(lastcatch)
-        playerone +=1
-    elif result == "loss":
-        lastcatch = "CPU plays {}".format(aihand)+", you play {}.".format(hand[given])+f" {Fore.RED}You lose!{Style.RESET_ALL}"
-        print(lastcatch)
-        aiwin +=1
     else:
-        lastcatch = "Draw!"
-        print(lastcatch)
-    clear()
+        print("Numbers 1-3 only please.")
+    
+    given = input("Please choose your Hand. 1->Rock 2->Paper 3->Scissors: ")
+    if given == "1" or given == "2" or given == "3":
+        given = int(given) -1
+        aihand = hand[random.randint(0,2)]
+        result = catch(hand[given],aihand)
+        if  result == "win":
+            lastcatch = "CPU plays {}".format(aihand)+", you play {}.".format(hand[given])+f" {Fore.YELLOW}You win!{Style.RESET_ALL}"
+            print(lastcatch)
+            playerone +=1
+        elif result == "loss":
+            lastcatch = "CPU plays {}".format(aihand)+", you play {}.".format(hand[given])+f" {Fore.RED}You lose!{Style.RESET_ALL}"
+            print(lastcatch)
+            aiwin +=1
+        else:
+            lastcatch = "Draw!"
+            print(lastcatch)
+        clear()
+    else:
+        clear()
+        lastcatch = 0
 if playerone == 3:
     print(lastcatch)
     print("Congratulations, you won a set of 3!")
